@@ -21,8 +21,8 @@ export class GameCartridge implements OnInit, AfterViewInit, OnDestroy {
       scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: 360,
-        height: 640,
+        width: 540,
+        height: 960,
       },
       physics: { default: 'arcade', arcade: { debug: true } },
       scene: [MainScene]

@@ -57,7 +57,7 @@ export class MainScene extends Phaser.Scene {
       body.rotation = 0;
     }
 
-    if (this._player.x < 50) this._player.x = 50;
-    if (this._player.x > 350) this._player.x = 350;
+    if (this._player.x < 150) this._player.x = 150;
+    if (this._player.x > this.scale.width - 150) this._player.x = this.scale.width - 150;
   }
 }
