@@ -39,10 +39,13 @@ export class MainScene extends Phaser.Scene {
 
     if (this._cursor.left.isDown) {
       body.setVelocityX(-250);
+      body.rotation = -10;
     } else if (this._cursor.right.isDown) {
       body.setVelocityX(250);
+      body.rotation = +10;
     } else {
       body.setVelocity(0);
+      body.rotation = 0;
     }
 
     if (this._player.x < 50) this._player.x = 50;
