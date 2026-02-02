@@ -22,8 +22,8 @@ export class MainScene extends Phaser.Scene {
 
 
     graphics.fillStyle(0x443322);
-    graphics.fillRect(0, 0, 40, height);
-    graphics.fillRect(width - 40, 0, 40, height);
+    graphics.fillRect(0, 0, 100, height);
+    graphics.fillRect(width - 100, 0, 100, height);
 
     graphics.lineStyle(2, 0xffee00);
     graphics.lineBetween(width / 2, 150, width / 2, height);
@@ -33,7 +33,7 @@ export class MainScene extends Phaser.Scene {
 
     this._road = this.add.tileSprite(width / 2, height / 2, width, height, 'roadTexture');
 
-    this._player = this.add.rectangle(width / 2, height - 100, 40, 60, 0xff4444);
+    this._player = this.add.rectangle(width / 2, height - 150, 20, 40, 0xff4444);
     this.physics.add.existing(this._player);
 
 
