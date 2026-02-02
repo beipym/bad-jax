@@ -1,12 +1,13 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ArcadeCabinet } from "./arcade-cabinet/arcade-cabinet";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  imports: [ArcadeCabinet],
+  template:`
+    <app-arcade-cabinet></app-arcade-cabinet>
+  `
 })
 export class App {
-  protected readonly title = signal('bad-jax');
+  protected readonly title = signal('Bad Jax');
 }
