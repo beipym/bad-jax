@@ -1,3 +1,11 @@
+::ng-deep canvas{
+  image-rendering: -moz-pixelated;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  image-rendering: optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
 html,body{
   margin: 0;
   paddin: 0;

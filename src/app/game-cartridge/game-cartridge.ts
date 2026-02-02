@@ -15,6 +15,9 @@ export class GameCartridge implements OnInit, AfterViewInit, OnDestroy {
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
       parent: 'game-cartridge-holder',
+      pixelArt: true,
+      roundPixels: true,
+      antialias: false,
       scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
