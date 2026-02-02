@@ -12,19 +12,28 @@ export class MainScene extends Phaser.Scene {
 
 
   create() {
+    const width = this.scale.width;
+    const height = this.scale.height;
+
     const graphics = this.make.graphics({ x: 0, y: 0 })
 
-    graphics.fillStyle(0x333333);
-    graphics.fillRect(0, 0, 400, 600);
+    graphics.fillStyle(0x222222);
+    graphics.fillRect(0, 0, width, height);
+
+
+    graphics.fillStyle(0x443322);
+    graphics.fillRect(0, 0, 40, height);
+    graphics.fillRect(width - 40, 0, 40, height);
+
     graphics.lineStyle(2, 0xffee00);
-    graphics.lineBetween(200, 300, 200, 500);
-    graphics.generateTexture('roadTexture', 200, 400);
+    graphics.lineBetween(width / 2, 150, width / 2, height);
+    graphics.generateTexture('roadTexture', width, height);
 
 
 
-    this._road = this.add.tileSprite(200, 300, 400, 600, 'roadTexture');
+    this._road = this.add.tileSprite(width / 2, height / 2, width, height, 'roadTexture');
 
-    this._player = this.add.rectangle(200, 500, 40, 60, 0xff4444);
+    this._player = this.add.rectangle(width / 2, height - 100, 40, 60, 0xff4444);
     this.physics.add.existing(this._player);
 
 

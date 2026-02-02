@@ -15,14 +15,20 @@ export class GameCartridge implements OnInit, AfterViewInit, OnDestroy {
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
       parent: 'game-cartridge-holder',
-      width: 400,
-      height: 600,
-      physics: { default: 'arcade' },
+      scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 360,
+        height: 640,
+      },
+      physics: { default: 'arcade', arcade: { debug: true } },
       scene: [MainScene]
     }
     this._game = new Phaser.Game(config);
   }
-  ngAfterViewInit() { }
+  ngAfterViewInit() {
+    console.log()
+  }
   ngOnDestroy() {
     if (this._game) {
       this._game.destroy(true);
