@@ -6,6 +6,17 @@ export class MainScene extends Phaser.Scene {
   private _scraps!: Phaser.Physics.Arcade.Group;
   private _spawnTime: number = 0;
 
+
+  private _playerBullets!: Phaser.Physics.Arcade.Group;
+  private _enemyBullets!: Phaser.Physics.Arcade.Group;
+
+  private _playerShootInterval: number = 0;
+  private _enemyShootingInterval: number = 300;
+
+  private _playerShootTimer: number = 50;
+  private _enemyShootTimer: number = 300;
+
+
   constructor() {
     super('MainScene');
   }
@@ -39,6 +50,21 @@ export class MainScene extends Phaser.Scene {
     this.physics.add.existing(this._player);
 
     this._scraps = this.physics.add.group();
+    this._playerBullets = this.physics.add.group();
+    this._enemyBullets = this.physics.add.group();
+
+    this.physics.add.overlap(this._playerBullets, this._scraps, (bullet, scrap) => {
+      bullet.destroy();
+      scrap.destroy();
+    })
+
+    this.physics.add.overlap(this._player, this._enemyBullets, () => {
+      console.log("jax is shot!");
+      this.scene.pause();
+      setTimeout(() => {
+        this.scene.restart();
+      }, 1000);
+    })
 
     this.physics.add.overlap(this._player, this._scraps, () => {
       console.log("CRASHED!");
@@ -68,6 +94,18 @@ export class MainScene extends Phaser.Scene {
       body.rotation = 0;
     }
 
+    this._playerShootInterval += delta;
+    if (this._playerShootInterval > this._playerShootTimer) {
+      this.firePlayerBullet();
+      this._playerShootInterval = 0;
+    }
+
+    this._enemyShootingInterval += delta;
+    if (this._enemyShootingInterval > this._enemyShootTimer) {
+      this.fireEnemyBullet();
+      this._enemyShootingInterval = 0;
+    }
+
     this._spawnTime += delta;
     if (this._spawnTime > 1000) {
       this.spawnScrap();
@@ -93,4 +131,13 @@ export class MainScene extends Phaser.Scene {
     const scrapBody = scrap.body as Phaser.Physics.Arcade.Body;
     scrapBody.setVelocityY(400);
   }
+
+  firePlayerBullet() {
+    const bullet = this.add.rectangle(this._player.x, this._player.y, 6, 15, 0x00ffff);
+    this._playerBullets.add(bullet);
+
+    const bulletBody = bullet.body as Phaser.Physics.Arcade.Body;
+    bulletBody.setVelocityY(-600);
+  }
+  fireEnemyBullet() { }
 }
