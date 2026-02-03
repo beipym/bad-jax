@@ -74,6 +74,12 @@ export class MainScene extends Phaser.Scene {
       this._spawnTime = 0;
     }
 
+    this._scraps.children.entries.forEach((scrap: any) => {
+      if (scrap.y > 950) {
+        scrap.destroy();
+      }
+    })
+
     if (this._player.x < 150) this._player.x = 150;
     if (this._player.x > this.scale.width - 150) this._player.x = this.scale.width - 150;
   }
