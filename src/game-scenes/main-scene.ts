@@ -10,7 +10,7 @@ export class MainScene extends Phaser.Scene {
   private _playerBullets!: Phaser.Physics.Arcade.Group;
   private _enemyBullets!: Phaser.Physics.Arcade.Group;
 
-  private _playerShootInterval: number = 0;
+  private _playerShootInterval: number = 100;
   private _enemyShootingInterval: number = 300;
 
   private _playerShootTimer: number = 50;
@@ -139,5 +139,6 @@ export class MainScene extends Phaser.Scene {
     const bulletBody = bullet.body as Phaser.Physics.Arcade.Body;
     bulletBody.setVelocityY(-600);
   }
+
   fireEnemyBullet() { }
 }
