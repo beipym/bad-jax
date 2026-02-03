@@ -3,9 +3,11 @@ export class MainScene extends Phaser.Scene {
   private _player!: Phaser.GameObjects.Rectangle;
   private _road!: Phaser.GameObjects.TileSprite;
   private _cursor!: Phaser.Types.Input.Keyboard.CursorKeys;
+  private _scraps!: Phaser.Physics.Arcade.Group;
+  private _spawnTime: number = 0;
 
   constructor() {
-    super('MainSene');
+    super('MainScene');
   }
 
   payload() { }
@@ -36,13 +38,22 @@ export class MainScene extends Phaser.Scene {
     this._player = this.add.rectangle(width / 2, height - 150, 20, 40, 0xff4444);
     this.physics.add.existing(this._player);
 
+    this._scraps = this.physics.add.group();
+
+    this.physics.add.overlap(this._player, this._scraps, () => {
+      console.log("CRASHED!");
+      this.scene.pause();
+      setTimeout(() => {
+        this.scene.restart();
+      }, 1000);
+    })
 
     if (this.input.keyboard) {
       this._cursor = this.input.keyboard.createCursorKeys();
     }
   }
 
-  override update(time?: number, delta?: number): void {
+  override update(time: number, delta: number): void {
     this._road.tilePositionY -= 5;
     const body = this._player.body as Phaser.Physics.Arcade.Body;
 
@@ -57,7 +68,23 @@ export class MainScene extends Phaser.Scene {
       body.rotation = 0;
     }
 
+    this._spawnTime += delta;
+    if (this._spawnTime > 1000) {
+      this.spawnScrap();
+      this._spawnTime = 0;
+    }
+
     if (this._player.x < 150) this._player.x = 150;
     if (this._player.x > this.scale.width - 150) this._player.x = this.scale.width - 150;
+  }
+
+  spawnScrap() {
+    const x = Phaser.Math.Between(140, this.scale.width - 140);
+
+    const scrap = this.add.rectangle(x, -50, 30, 30, 0x999999);
+
+    this._scraps.add(scrap);
+    const scrapBody = scrap.body as Phaser.Physics.Arcade.Body;
+    scrapBody.setVelocityY(400);
   }
 }
