@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+::ng-deep canvas{
+  image-rendering: -moz-pixelated;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  image-rendering: optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+html,body{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000;
+
+}
+
+.arcade-cabinet{
+
+  .game-cartridge-wrapper{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #111;
+    overflow: hidden;
+  }
+}
+
+app-game-cartridge{
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+}
