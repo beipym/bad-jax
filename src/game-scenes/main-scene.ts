@@ -73,11 +73,10 @@ export class MainScene extends Phaser.Scene {
       }, 1000);
     })
 
-    this._cursor = this.input.activePointer;
   }
 
   override update(time: number, delta: number): void {
-
+    this._cursor = this.input.activePointer;
     if (this._cursor.isDown) {
 
       this._road.tilePositionY -= 5;

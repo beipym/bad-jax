@@ -1,6 +1,10 @@
 # Variables
 SHELL := /bin/bash
 MSG ?= "update: minor arcade adjustments"
+# .PHONY: bdev
+# build:
+  # npx ng build --configuration production --base-href \/jax\/
+
 
 # --- Development ---
 .PHONY: dev

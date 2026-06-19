@@ -24,7 +24,10 @@ export class GameCartridge implements OnInit, AfterViewInit, OnDestroy {
         width: 540,
         height: 960,
       },
-      physics: { default: 'arcade', arcade: { debug: true } },
+      input: {
+        activePointers: 1,
+      },
+      physics: { default: 'arcade', arcade: { debug: false } },
       scene: [MainScene]
     }
     this._game = new Phaser.Game(config);
